@@ -9,6 +9,8 @@ public class LevelManager : MonoBehaviour
     private float clickerMultiplier = 1f;
     [SerializeField]
     private GameDataController gameDataController;
+    [SerializeField]
+    private string urlname;
 
     private bool isAutoClicking = false;
     private float autoClickInterval = 1f; // Variable para controlar el tiempo de espera
@@ -36,6 +38,7 @@ public class LevelManager : MonoBehaviour
         randomEvents.Add(Event1);
         randomEvents.Add(Event2);
         randomEvents.Add(Event3);
+        randomEvents.Add(Event4);
     }
 
     // Update is called once per frame
@@ -67,8 +70,8 @@ public class LevelManager : MonoBehaviour
         pumpkins += Mathf.RoundToInt(1 * clickerMultiplier);
         Debug.Log("Añadida calabaza");
 
-        // Determinar si un evento aleatorio debe ocurrir
-        if (UnityEngine.Random.Range(0f, 1f) <= 0.02f) // 2% de probabilidad
+        
+        if (UnityEngine.Random.Range(0f, 1f) <= 0.01f) 
         {
             ExecuteRandomEvent();
         }
@@ -110,8 +113,13 @@ public class LevelManager : MonoBehaviour
 
     private void Event3()
     {
-        Debug.Log("Evento 3 ocurrió!");
+        Debug.Log("Evento 4 ocurrió!");
         Application.Quit();
+    }
+
+    private void Event4()
+    {
+        Application.OpenURL(urlname);
     }
 
     IEnumerator BasicAutoClick()
